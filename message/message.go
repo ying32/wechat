@@ -62,6 +62,16 @@ const (
 	EventTempLateSendJobFinish = "TEMPLATESENDJOBFINISH"
 )
 
+// 模版消息推送返回结果
+const (
+	// StatusSuccess  成功，
+	StatusSuccess = "success"
+	// StatusFailedUserBlock 用户拒收
+	StatusFailedUserBlock = "failed:user block"
+	// StatusFailedSystemFailed 其它原因
+	StatusFailedSystemFailed = "failed: system failed"
+)
+
 //MixMessage 存放所有微信发送过来的消息和事件
 type MixMessage struct {
 	CommonToken
@@ -90,7 +100,7 @@ type MixMessage struct {
 	Precision string    `xml:"Precision"`
 	MenuID    string    `xml:"MenuId"`
 
-	// 模版消息推送返回结果 1、success 成功， 2、failed:user block 用户拒收 3、failed: system failed 其它原因
+	// 模版消息推送返回结果
 	Status string `xml:"Status"`
 
 	ScanCodeInfo struct {
