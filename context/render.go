@@ -7,6 +7,7 @@ import (
 
 var xmlContentType = []string{"application/xml; charset=utf-8"}
 var plainContentType = []string{"text/plain; charset=utf-8"}
+var htmlContentType = []string{"text/html; charset=utf-8"}
 
 //Render render from bytes
 func (ctx *Context) Render(bytes []byte) {
@@ -33,6 +34,12 @@ func (ctx *Context) XML(obj interface{}) {
 		panic(err)
 	}
 	ctx.Render(bytes)
+}
+
+// HTML render to html
+func (ctx *Context) HTML(str string) {
+	writeContextType(ctx.Writer, htmlContentType)
+	ctx.Render([]byte(str))
 }
 
 func writeContextType(w http.ResponseWriter, value []string) {
