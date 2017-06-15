@@ -13,7 +13,7 @@ const (
 	templateMsg = "https://api.weixin.qq.com/cgi-bin/message/template/send?access_token=%s"
 )
 
-// TTemplateMsg 业务模版消息
+// TTemplateMsg 业务模板消息
 type TTemplateMsg struct {
 	*context.Context
 }
@@ -68,4 +68,9 @@ func (t *TTemplateMsg) PushTo(openId, templateId, url, topColor string, data int
 		return fmt.Errorf("Push template message error : errcode=%v , errmsg=%v", result.ErrCode, result.ErrMsg)
 	}
 	return nil
+}
+
+// PushTo2 推送业务消息， 使用默认的模板Id
+func (t *TTemplateMsg) PushTo2(openId, url, topColor string, data interface{}) error {
+	return t.PushTo(openId, t.TemplateMsgId, url, topColor, data)
 }

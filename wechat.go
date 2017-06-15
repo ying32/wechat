@@ -25,7 +25,9 @@ type Config struct {
 	AppSecret      string
 	Token          string
 	EncodingAESKey string
-	Cache          cache.Cache
+	// 默认的模板消息id
+	TemplateMsgId string
+	Cache         cache.Cache
 }
 
 // NewWechat init
@@ -40,6 +42,7 @@ func copyConfigToContext(cfg *Config, context *context.Context) {
 	context.AppSecret = cfg.AppSecret
 	context.Token = cfg.Token
 	context.EncodingAESKey = cfg.EncodingAESKey
+	context.TemplateMsgId = cfg.TemplateMsgId
 	context.Cache = cfg.Cache
 	context.SetAccessTokenLock(new(sync.RWMutex))
 	context.SetJsAPITicketLock(new(sync.RWMutex))
@@ -78,7 +81,7 @@ func (wc *Wechat) GetMenu(req *http.Request, writer http.ResponseWriter) *menu.M
 	return menu.NewMenu(wc.Context)
 }
 
-// GetTemplateMsg 业务模版消息
+// GetTemplateMsg 业务模板消息
 func (wc *Wechat) GetTemplateMsg() *templatemsg.TTemplateMsg {
 	return templatemsg.NewTemplateMsg(wc.Context)
 }

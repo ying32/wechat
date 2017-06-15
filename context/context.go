@@ -14,6 +14,8 @@ type Context struct {
 	Token          string
 	EncodingAESKey string
 
+	TemplateMsgId string
+
 	Cache cache.Cache
 
 	Writer  http.ResponseWriter
