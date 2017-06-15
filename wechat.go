@@ -4,13 +4,14 @@ import (
 	"net/http"
 	"sync"
 
-	"github.com/silenceper/wechat/cache"
-	"github.com/silenceper/wechat/context"
-	"github.com/silenceper/wechat/js"
-	"github.com/silenceper/wechat/material"
-	"github.com/silenceper/wechat/menu"
-	"github.com/silenceper/wechat/oauth"
-	"github.com/silenceper/wechat/server"
+	"github.com/ying32/wechat/cache"
+	"github.com/ying32/wechat/context"
+	"github.com/ying32/wechat/js"
+	"github.com/ying32/wechat/material"
+	"github.com/ying32/wechat/menu"
+	"github.com/ying32/wechat/oauth"
+	"github.com/ying32/wechat/server"
+	"github.com/ying32/wechat/templatemsg"
 )
 
 // Wechat struct
@@ -75,4 +76,9 @@ func (wc *Wechat) GetMenu(req *http.Request, writer http.ResponseWriter) *menu.M
 	wc.Context.Request = req
 	wc.Context.Writer = writer
 	return menu.NewMenu(wc.Context)
+}
+
+// GetTemplateMsg 业务模版消息
+func (wc *Wechat) GetTemplateMsg() *templatemsg.TTemplateMsg {
+	return templatemsg.NewTemplateMsg(wc.Context)
 }
