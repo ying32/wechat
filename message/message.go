@@ -58,6 +58,8 @@ const (
 	EventPicWeixin = "pic_weixin"
 	//EventLocationSelect 弹出地理位置选择器的事件推送
 	EventLocationSelect = "location_select"
+	// EventTempLateSendJobFinish 模版业务消息推送结果
+	EventTempLateSendJobFinish = "TEMPLATESENDJOBFINISH"
 )
 
 //MixMessage 存放所有微信发送过来的消息和事件
@@ -87,6 +89,9 @@ type MixMessage struct {
 	Longitude string    `xml:"Longitude"`
 	Precision string    `xml:"Precision"`
 	MenuID    string    `xml:"MenuId"`
+
+	// 模版消息推送返回结果 1、success 成功， 2、failed:user block 用户拒收 3、failed: system failed 其它原因
+	Status string `xml:"Status"`
 
 	ScanCodeInfo struct {
 		ScanType   string `xml:"ScanType"`
