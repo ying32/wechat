@@ -58,11 +58,11 @@ const (
 	EventPicWeixin = "pic_weixin"
 	//EventLocationSelect 弹出地理位置选择器的事件推送
 	EventLocationSelect = "location_select"
-	// EventTempLateSendJobFinish 模版业务消息推送结果
+	// EventTempLateSendJobFinish 模板业务消息推送结果
 	EventTempLateSendJobFinish = "TEMPLATESENDJOBFINISH"
 )
 
-// 模版消息推送返回结果
+// 模板消息推送返回结果
 const (
 	// StatusSuccess  成功，
 	StatusSuccess = "success"
@@ -100,7 +100,7 @@ type MixMessage struct {
 	Precision string    `xml:"Precision"`
 	MenuID    string    `xml:"MenuId"`
 
-	// 模版消息推送返回结果
+	// 模板消息推送返回结果
 	Status string `xml:"Status"`
 
 	ScanCodeInfo struct {

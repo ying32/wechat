@@ -18,7 +18,7 @@ type TTemplateMsg struct {
 	*context.Context
 }
 
-// TTemplateMsgBody 模版消息主导
+// TTemplateMsgBody 模板消息主导
 type TTemplateMsgBody struct {
 	ToUser     string      `json:"touser"`
 	TemplateId string      `json:"template_id"`
