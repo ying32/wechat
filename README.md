@@ -370,7 +370,7 @@ tmsgData.PhoneNumber.Color = "#173177"
 
 tmsg.PushTo2(msg.FromUserName, "", "#FF0000", tmsgData)
 // 或者不使用默认模板id的
-// tmsg.PushTo2(msg.FromUserName, templateid, "", "#FF0000", tmsgData)
+// tmsg.PushTo(msg.FromUserName, templateid, "", "#FF0000", tmsgData)
 ```
 
 
