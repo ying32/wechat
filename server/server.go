@@ -14,7 +14,7 @@ import (
 	"github.com/ying32/wechat/util"
 )
 
-//Server struct
+//Server struct 
 type Server struct {
 	*context.Context
 

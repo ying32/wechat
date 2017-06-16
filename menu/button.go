@@ -1,6 +1,6 @@
 package menu
 
-//Button 菜单按钮
+//Button 菜单按钮 
 type Button struct {
 	Type       string    `json:"type,omitempty"`
 	Name       string    `json:"name,omitempty"`

@@ -107,3 +107,4 @@ func (js *Js) getTicketFromServer() (ticket resTicket, err error) {
 	err = js.Cache.Set(jsAPITicketCacheKey, ticket.Ticket, time.Duration(expires)*time.Second)
 	return
 }
+

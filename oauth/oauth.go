@@ -7,7 +7,7 @@ import (
 	"net/url"
 
 	"github.com/ying32/wechat/context"
-	"github.com/ying32/wechat/util"
+	"github.com/ying32/wechat/util" 
 )
 
 const (

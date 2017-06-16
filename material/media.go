@@ -7,7 +7,7 @@ import (
 	"github.com/ying32/wechat/util"
 )
 
-//MediaType 媒体文件类型
+//MediaType 媒体文件类型 
 type MediaType string
 
 const (
