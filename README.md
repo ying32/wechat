@@ -344,29 +344,13 @@ Url	：点击图文消息跳转链接
 
 ```go
 
-// 先定义模版中的填充字段
-type TWXTemplateData struct {
-	Station     templatemsg.TTemplateDataVal `json:"station"`
-	Count       templatemsg.TTemplateDataVal `json:"count"`
-	Detail      templatemsg.TTemplateDataVal `json:"detail"`
-	PhoneNumber templatemsg.TTemplateDataVal `json:"pnumber"`
-}
-
 tmsg := wc.GetTemplateMsg()
-
-var tmsgData TWXTemplateData
-
-tmsgData.Station.Value = "测试"
-tmsgData.Station.Color = "#173177"
-
-tmsgData.Count.Value = "3"
-tmsgData.Count.Color = "#173177"
-
-tmsgData.Detail.Value = "我是详细信息"
-tmsgData.Detail.Color = "#173177"
-
-tmsgData.PhoneNumber.Value = "13444444444"
-tmsgData.PhoneNumber.Color = "#173177"
+ 
+tmsgData := templatemsg.NewTempldateData()
+tmsgData.Add("station", "测试", "#173177")
+tmsgData.Add("count", "3", "#173177")
+tmsgData.Add("detail", `详细信息`, "#173177")
+tmsgData.Add("pnumber", "13444444444", "#173177")
 
 tmsg.PushTo2(msg.FromUserName, "", "#FF0000", tmsgData)
 // 或者不使用默认模板id的
