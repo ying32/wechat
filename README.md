@@ -17,6 +17,7 @@ config := &wechat.Config{
 	AppSecret:      "xxxx",
 	Token:          "xxxx",
 	EncodingAESKey: "xxxx",
+	TemplateMsgId:  "xxxx", // 默认的模板id
 	Cache:          memCache
 }
 wc := wechat.NewWechat(config)
@@ -53,6 +54,7 @@ wcConfig := &wechat.Config{
 	AppSecret:      cfg.AppSecret,
 	Token:          cfg.Token,
 	EncodingAESKey: cfg.EncodingAESKey,//消息加解密时用到
+	TemplateMsgId : Cfg.TemplateMsgId, // 业务推送的默认模板ID
 	Cache:          memcache,
 }
 ```
@@ -74,6 +76,7 @@ Cache主要用来保存全局access_token以及js-sdk中的ticket：
 		- 回复视频消息
 		- 回复音乐消息
 		- 回复图文消息
+	- 模板业务推送
 - [自定义菜单](#自定义菜单)
 	- 自定义菜单创建接口
 	- 自定义菜单查询接口
@@ -130,6 +133,9 @@ type MixMessage struct {
 
 	MenuID    string `xml:"MenuId"`
 
+	// 模板消息推送返回结果
+	Status string `xml:"Status"`	
+	
 	//扫码事件
 	ScanCodeInfo struct {
 		ScanType   string `xml:"ScanType"`
@@ -252,6 +258,10 @@ case message.MsgTypeEvent:
 		case message.EventLocationSelect:
 			//do something
 
+			// 模板业务消息推送结果
+		case message.EventTempLateSendJobFinish:
+			//do something
+
 	}
 
 
@@ -328,6 +338,40 @@ Description：图文消息描述
 PicUrl	：图片链接，支持JPG、PNG格式，较好的效果为大图360*200，小图200*200
 
 Url	：点击图文消息跳转链接
+
+
+### 模板业务推送  
+
+```go
+
+// 先定义模版中的填充字段
+type TWXTemplateData struct {
+	Station     templatemsg.TTemplateDataVal `json:"station"`
+	Count       templatemsg.TTemplateDataVal `json:"count"`
+	Detail      templatemsg.TTemplateDataVal `json:"detail"`
+	PhoneNumber templatemsg.TTemplateDataVal `json:"pnumber"`
+}
+
+tmsg := wc.GetTemplateMsg()
+
+var tmsgData TWXTemplateData
+
+tmsgData.Station.Value = "测试"
+tmsgData.Station.Color = "#173177"
+
+tmsgData.Count.Value = "3"
+tmsgData.Count.Color = "#173177"
+
+tmsgData.Detail.Value = "我是详细信息"
+tmsgData.Detail.Color = "#173177"
+
+tmsgData.PhoneNumber.Value = "13444444444"
+tmsgData.PhoneNumber.Color = "#173177"
+
+tmsg.PushTo2(msg.FromUserName, "", "#FF0000", tmsgData)
+// 或者不使用默认模板id的
+// tmsg.PushTo2(msg.FromUserName, templateid, "", "#FF0000", tmsgData)
+```
 
 
 ## 自定义菜单
