@@ -346,7 +346,7 @@ Url	：点击图文消息跳转链接
 
 tmsg := wc.GetTemplateMsg()
  
-tmsgData := templatemsg.NewTempldateData()
+tmsgData := templatemsg.NewTemplateData()
 tmsgData.Add("station", "测试", "#173177")
 tmsgData.Add("count", "3", "#173177")
 tmsgData.Add("detail", `详细信息`, "#173177")

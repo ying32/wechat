@@ -43,8 +43,8 @@ type TTemplateData struct {
 	datas map[string]TTemplateDataVal
 }
 
-// NewTempldateData 新建一个模板数据
-func NewTempldateData() *TTemplateData {
+// NewTemplateData 新建一个模板数据
+func NewTemplateData() *TTemplateData {
 	td := new(TTemplateData)
 	td.datas = make(map[string]TTemplateDataVal, 0)
 	return td
