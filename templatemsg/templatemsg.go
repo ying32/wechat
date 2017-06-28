@@ -74,10 +74,10 @@ func NewTemplateMsg(context *context.Context) *TTemplateMsg {
 }
 
 // PushTo 推送业务消息
-func (t *TTemplateMsg) PushTo(openId, templateId, url, topColor string, data *TTemplateData) error {
+func (t *TTemplateMsg) PushTo(openId, templateId, url, topColor string, data *TTemplateData) (int64, error) {
 	accessKey, err := t.GetAccessToken()
 	if err != nil {
-		return err
+		return -1, err
 	}
 	var msgBody TTemplateMsgBody
 	msgBody.ToUser = openId
@@ -89,15 +89,15 @@ func (t *TTemplateMsg) PushTo(openId, templateId, url, topColor string, data *TT
 	var result TTemplateMsgError
 	err = json.Unmarshal(response, &result)
 	if err != nil {
-		return err
+		return -1, err
 	}
 	if result.ErrCode != 0 {
-		return fmt.Errorf("Push template message error : errcode=%v , errmsg=%v", result.ErrCode, result.ErrMsg)
+		return -1, fmt.Errorf("Push template message error : errcode=%v , errmsg=%v", result.ErrCode, result.ErrMsg)
 	}
-	return nil
+	return result.MsgId, nil
 }
 
 // PushTo2 推送业务消息， 使用默认的模板Id
-func (t *TTemplateMsg) PushTo2(openId, url, topColor string, data *TTemplateData) error {
+func (t *TTemplateMsg) PushTo2(openId, url, topColor string, data *TTemplateData) (int64, error) {
 	return t.PushTo(openId, t.TemplateMsgId, url, topColor, data)
 }
