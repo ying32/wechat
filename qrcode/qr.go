@@ -96,7 +96,7 @@ func (g TGenQRCode) GetTempQRCodeTicket(expireSeconds int, scene string) (*Ticke
 // GetPermanentQRCodeTicket 获取永久性QRCode Ticket
 func (g TGenQRCode) GetPermanentQRCodeTicket(scene string) (*Ticket, error) {
 	v := permanentQRCode{}
-	v.ActionName = "QR_STR_SCENE"
+	v.ActionName = "QR_LIMIT_STR_SCENE"
 	v.ActionInfo.SceneStr = scene
 	return g.getQRCodeTicket(v)
 }
