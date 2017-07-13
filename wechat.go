@@ -10,6 +10,7 @@ import (
 	"github.com/ying32/wechat/material"
 	"github.com/ying32/wechat/menu"
 	"github.com/ying32/wechat/oauth"
+	"github.com/ying32/wechat/qrcode"
 	"github.com/ying32/wechat/server"
 	"github.com/ying32/wechat/templatemsg"
 )
@@ -84,4 +85,9 @@ func (wc *Wechat) GetMenu(req *http.Request, writer http.ResponseWriter) *menu.M
 // GetTemplateMsg 业务模板消息
 func (wc *Wechat) GetTemplateMsg() *templatemsg.TTemplateMsg {
 	return templatemsg.NewTemplateMsg(wc.Context)
+}
+
+// GetQRCode QRCode
+func (wc *Wechat) GetQRCode() *qrcode.TGenQRCode {
+	return qrcode.NewGenQRCode(wc.Context)
 }
