@@ -31,15 +31,15 @@ type scene struct {
 
 // tempQRCode 临时qrcode参数
 type tempQRCode struct {
-	ExpireSeconds int        `json:"expire_seconds"`
-	ActionName    string     `json:"action_name"`
-	ActionInfo    sceneParam `json:"action_info"`
+	ExpireSeconds int    `json:"expire_seconds"`
+	ActionName    string `json:"action_name"`
+	ActionInfo    scene  `json:"action_info"`
 }
 
 // permanentQRCode  永久qrcode参数
 type permanentQRCode struct {
-	ActionName string     `json:"action_name"`
-	ActionInfo sceneParam `json:"action_info"`
+	ActionName string `json:"action_name"`
+	ActionInfo scene  `json:"action_info"`
 }
 
 // Ticket
@@ -89,7 +89,7 @@ func (g TGenQRCode) GetTempQRCodeTicket(expireSeconds int, scene string) (*Ticke
 	v := tempQRCode{}
 	v.ExpireSeconds = expireSeconds
 	v.ActionName = "QR_STR_SCENE"
-	v.ActionInfo.SceneStr = scene
+	v.ActionInfo.Scene.SceneStr = scene
 	return g.getQRCodeTicket(v)
 }
 
@@ -97,7 +97,7 @@ func (g TGenQRCode) GetTempQRCodeTicket(expireSeconds int, scene string) (*Ticke
 func (g TGenQRCode) GetPermanentQRCodeTicket(scene string) (*Ticket, error) {
 	v := permanentQRCode{}
 	v.ActionName = "QR_LIMIT_STR_SCENE"
-	v.ActionInfo.SceneStr = scene
+	v.ActionInfo.Scene.SceneStr = scene
 	return g.getQRCodeTicket(v)
 }
 
