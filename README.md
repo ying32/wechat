@@ -370,30 +370,43 @@ tmsg.PushTo2(msg.FromUserName, "", "#FF0000", tmsgData)
 
 以下是一个创建二级菜单的例子
 
+
+
+原作者例子：  
+~~mu := wc.GetMenu(c.Request, c.Writer)~~  
+
+~~buttons := make([]*menu.Button, 1)~~  
+~~btn := new(menu.Button)~~  
+
+~~//创建click类型菜单~~  
+~~btn.SetClickButton("name", "key123")~~  
+~~buttons[0] = btn~~  
+
+~~//设置btn为二级菜单~~  
+~~btn2 := new(menu.Button)~~  
+~~btn2.SetSubButton("subButton", buttons)~~  
+
+~~buttons2 := make([]*menu.Button, 1)~~  
+~~buttons2[0] = btn2~~  
+
+~~//发送请求~~  
+~~err := mu.SetMenu(buttons2)~~  
+~~if err != nil {~~  
+~~fmt.Printf("err= %v", err)~~  
+~~return~~  
+~~}~~  
+
+
+新的例子：  
+
 ```go
-mu := wc.GetMenu(c.Request, c.Writer)
-
-buttons := make([]*menu.Button, 1)
-btn := new(menu.Button)
-
-//创建click类型菜单
-btn.SetClickButton("name", "key123")
-buttons[0] = btn
-
-//设置btn为二级菜单
-btn2 := new(menu.Button)
-btn2.SetSubButton("subButton", buttons)
-
-buttons2 := make([]*menu.Button, 1)
-buttons2[0] = btn2
-
-//发送请求
-err := mu.SetMenu(buttons2)
-if err != nil {
-	fmt.Printf("err= %v", err)
-	return
-}
-
+   wxMenu := NewWXMenu(wc.GetMenu(c.Request, c.Writer))
+   top := wxMenu.Add("一级菜单1")
+   top.AddClick("二级菜单1", "bbbb")
+   top.AddClick("二级菜单2", "cccc")
+   top = wxMenu.Add("一级菜单2")
+   top.AddClick("帮助", "help")
+   fmt.Println(wxMenu.Submit())
 ```
 
 **创建其他类型的菜单：**
