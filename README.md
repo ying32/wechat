@@ -22,7 +22,7 @@ config := &wechat.Config{
 	Token:          "xxxx",
 	EncodingAESKey: "xxxx",
 	TemplateMsgId:  "xxxx", // 默认的模板id
-	Cache:          memCache
+	Cache:          cache.NewSimpleCache("xxxx")
 }
 wc := wechat.NewWechat(config)
 
