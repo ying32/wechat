@@ -7,6 +7,7 @@ import (
 	"github.com/ying32/wechat/cache"
 	"github.com/ying32/wechat/context"
 	"github.com/ying32/wechat/js"
+	"github.com/ying32/wechat/kfaccount"
 	"github.com/ying32/wechat/material"
 	"github.com/ying32/wechat/menu"
 	"github.com/ying32/wechat/oauth"
@@ -90,4 +91,9 @@ func (wc *Wechat) GetTemplateMsg() *templatemsg.TTemplateMsg {
 // GetQRCode QRCode
 func (wc *Wechat) GetQRCode() *qrcode.TGenQRCode {
 	return qrcode.NewGenQRCode(wc.Context)
+}
+
+// GetKFAccount 客服接口
+func (wc *Wechat) GetKFAccount() *kfaccount.TKFAccount {
+	return kfaccount.NewKFAccount(wc.Context)
 }
