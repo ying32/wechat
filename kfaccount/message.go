@@ -45,7 +45,7 @@ func NewTextReply(touser, content string) *TTextReply {
 	return im
 }
 
-func NewImageReply(touser, mediaid string) *TVoiceReply {
+func NewVoiceReply(touser, mediaid string) *TVoiceReply {
 	im := new(TVoiceReply)
 	im.MsgType = "voice"
 	im.ToUser = touser
