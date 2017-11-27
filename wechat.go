@@ -14,6 +14,7 @@ import (
 	"github.com/ying32/wechat/qrcode"
 	"github.com/ying32/wechat/server"
 	"github.com/ying32/wechat/templatemsg"
+	"github.com/ying32/wechat/usermgr"
 )
 
 // Wechat struct
@@ -96,4 +97,9 @@ func (wc *Wechat) GetQRCode() *qrcode.TGenQRCode {
 // GetKFAccount 客服接口
 func (wc *Wechat) GetKFAccount() *kfaccount.TKFAccount {
 	return kfaccount.NewKFAccount(wc.Context)
+}
+
+// GetUserMgr 获取用户管理接口
+func (wc *Wechat) GetUserMgr() *usermgr.TUserMgr {
+	return usermgr.NewUserMgr(wc.Context)
 }
