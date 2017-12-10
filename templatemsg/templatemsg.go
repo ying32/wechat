@@ -96,8 +96,3 @@ func (t *TTemplateMsg) PushTo(openId, templateId, url, topColor string, data *TT
 	}
 	return result.MsgId, nil
 }
-
-// PushTo2 推送业务消息， 使用默认的模板Id
-func (t *TTemplateMsg) PushTo2(openId, url, topColor string, data *TTemplateData) (int64, error) {
-	return t.PushTo(openId, t.TemplateMsgId, url, topColor, data)
-}

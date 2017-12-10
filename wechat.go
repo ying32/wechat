@@ -28,9 +28,7 @@ type Config struct {
 	AppSecret      string
 	Token          string
 	EncodingAESKey string
-	// 默认的模板消息id
-	TemplateMsgId string
-	Cache         cache.Cache
+	Cache          cache.Cache
 }
 
 // NewWechat init
@@ -45,7 +43,6 @@ func copyConfigToContext(cfg *Config, context *context.Context) {
 	context.AppSecret = cfg.AppSecret
 	context.Token = cfg.Token
 	context.EncodingAESKey = cfg.EncodingAESKey
-	context.TemplateMsgId = cfg.TemplateMsgId
 	context.Cache = cfg.Cache
 	context.SetAccessTokenLock(new(sync.RWMutex))
 	context.SetJsAPITicketLock(new(sync.RWMutex))
