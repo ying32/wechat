@@ -21,7 +21,6 @@ config := &wechat.Config{
 	AppSecret:      "xxxx",
 	Token:          "xxxx",
 	EncodingAESKey: "xxxx",
-	TemplateMsgId:  "xxxx", // 默认的模板id
 	Cache:          cache.NewSimpleCache("xxxx")
 }
 wc := wechat.NewWechat(config)
@@ -58,7 +57,6 @@ wcConfig := &wechat.Config{
 	AppSecret:      cfg.AppSecret,
 	Token:          cfg.Token,
 	EncodingAESKey: cfg.EncodingAESKey,//消息加解密时用到
-	TemplateMsgId : Cfg.TemplateMsgId, // 业务推送的默认模板ID
 	Cache:          memcache,
 }
 ```
@@ -356,8 +354,6 @@ tmsgData.Add("count", "3", "#173177")
 tmsgData.Add("detail", `详细信息`, "#173177")
 tmsgData.Add("pnumber", "13444444444", "#173177")
 
-tmsg.PushTo2(msg.FromUserName, "", "#FF0000", tmsgData)
-// 或者不使用默认模板id的
 // tmsg.PushTo(msg.FromUserName, templateid, "", "#FF0000", tmsgData)
 ```
 
