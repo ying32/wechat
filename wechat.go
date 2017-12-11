@@ -68,16 +68,12 @@ func (wc *Wechat) GetOauth(req *http.Request, writer http.ResponseWriter) *oauth
 }
 
 // GetJs js-sdk配置
-func (wc *Wechat) GetJs(req *http.Request, writer http.ResponseWriter) *js.Js {
-	wc.Context.Request = req
-	wc.Context.Writer = writer
+func (wc *Wechat) GetJs() *js.Js {
 	return js.NewJs(wc.Context)
 }
 
 // GetMenu 菜单管理接口
-func (wc *Wechat) GetMenu(req *http.Request, writer http.ResponseWriter) *menu.Menu {
-	wc.Context.Request = req
-	wc.Context.Writer = writer
+func (wc *Wechat) GetMenu() *menu.Menu {
 	return menu.NewMenu(wc.Context)
 }
 
