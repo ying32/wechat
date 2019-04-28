@@ -58,7 +58,7 @@ func (f *TSimpleCache) Set(key string, val interface{}, timeout time.Duration) e
 	item := TSimpleCacheItem{
 		 Key:key,
 		 AccessKey:val.(string),
-		 ExpirsTime:time.Now().Add(timeout * time.Second - time.Duration(5)*time.Second).Unix(), // 提前5秒获取新的accesskey
+		 ExpirsTime:time.Now().Add(timeout).Unix(),
 	}
 	f.items[key] = item
 	// 写到文件
