@@ -40,7 +40,6 @@ func NewSimpleCache(name string) *TSimpleCache {
 		} else {
 			log.Println("读取simpleCahce错误。")
 		}
-		log.Println(f.items)
 	}
 	return f
 }
